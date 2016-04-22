@@ -7,6 +7,7 @@ module.exports = function(config) {
         'fixture'
     ],
     files: [
+//        'lib/**/*.js', // ライブラリを先に読み込む
         'src/**/*.js',
         'test/**/*.spec.js',
         'test/fixtures/**/*.html'
@@ -21,16 +22,15 @@ module.exports = function(config) {
       debug: true,
       transform: [
         [
-//          require('browserify-istanbul')({
-//            instrumenter: require('isparta'),
-//            ignore: ['**/test/**']
-//          }),
-          'babelify', {plugins: ['babel-plugin-espower']}
+          'babelify', {plugins: ['babel-plugin-espower']},
+          require('browserify-istanbul')({ // babelifyの後に書く
+            instrumenter: require('isparta'),
+            ignore: ['**/test/**']
+          })
         ]
       ]
     },
     reporters: ['mocha', 'coverage'],
-//    reporters: ['mocha', 'progress', 'coverage'],
     coverageReporter: {
       dir: 'coverage/',
       type: 'lcov'
@@ -39,7 +39,8 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
+//    browsers: ['Chrome'],
     singleRun: false
   });
 };
