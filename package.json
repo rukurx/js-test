@@ -29,7 +29,9 @@
     "karma-html2js-preprocessor": "^0.1.0",
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
     "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7",
     "power-assert": "^0.11.0",
     "utf-8-validate": "^1.2.1"
   }
